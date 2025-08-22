@@ -6,25 +6,19 @@
   <title>Wiktoria Mandziuk – Architekt | Portfolio</title>
   <meta name="description" content="Portfolio architektki Wiktorii Mandziuk. Elegancka paleta beży, sekcje scroll‑snap, nawigacja kropkami, PL/EN, Web3Forms i animacje." />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="https://media.lordicon.com/icons/system/regular/45-category.svg" type="image/svg+xml">
 
-  <!-- Vendors -->
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-  <!-- TŁO -->
   <div id="bgTint" aria-hidden="true"></div>
   <canvas id="bg" aria-hidden="true"></canvas>
-
-  <!-- Preloader -->
   <div id="preloader" aria-hidden="true"><div class="loader" role="status" aria-label="Wczytywanie…"></div></div>
 
   <!-- HEADER -->
@@ -34,9 +28,8 @@
       <span class="brand-text"><span data-i18n="brand.name">Wiktoria&nbsp;Mandziuk</span><span class="role">/ <span data-i18n="brand.role">Architekt</span></span></span>
     </a>
 
-    <button id="burger" class="burger" aria-label="Otwórz nawigację" aria-expanded="false"><span></span><span></span><span></span></button>
-
-    <nav id="drawer" class="nav" aria-hidden="true">
+    <!-- DESKTOP: widoczne zakładki -->
+    <nav id="mainNav" class="nav main-nav" aria-label="Główna nawigacja">
       <a href="#o-mnie"><img class="ico" alt="O mnie" src="https://media.lordicon.com/icons/system/regular/40-avatar-user.svg"><span data-i18n="nav.about">O mnie</span></a>
       <a href="#projekty"><img class="ico" alt="Projekty" src="https://media.lordicon.com/icons/system/regular/56-view-list.svg"><span data-i18n="nav.projects">Projekty</span></a>
       <a href="#doswiadczenie"><img class="ico" alt="Doświadczenie" src="https://media.lordicon.com/icons/system/regular/23-calendar.svg"><span data-i18n="nav.experience">Doświadczenie</span></a>
@@ -44,17 +37,34 @@
       <a href="#edukacja"><img class="ico" alt="Edukacja" src="https://media.lordicon.com/icons/system/regular/23-calendar.svg"><span data-i18n="nav.education">Edukacja</span></a>
     </nav>
 
+    <!-- MOBILE: szuflada otwierana burgerem -->
+    <nav id="drawer" class="nav dropdown" aria-hidden="true" role="menu">
+      <a role="menuitem" href="#o-mnie"><img class="ico" alt="O mnie" src="https://media.lordicon.com/icons/system/regular/40-avatar-user.svg"><span data-i18n="nav.about">O mnie</span></a>
+      <a role="menuitem" href="#projekty"><img class="ico" alt="Projekty" src="https://media.lordicon.com/icons/system/regular/56-view-list.svg"><span data-i18n="nav.projects">Projekty</span></a>
+      <a role="menuitem" href="#doswiadczenie"><img class="ico" alt="Doświadczenie" src="https://media.lordicon.com/icons/system/regular/23-calendar.svg"><span data-i18n="nav.experience">Doświadczenie</span></a>
+      <a role="menuitem" href="#certyfikaty"><img class="ico" alt="Certyfikaty" src="https://media.lordicon.com/icons/system/regular/45-category.svg"><span data-i18n="nav.certificates">Certyfikaty</span></a>
+      <a role="menuitem" href="#edukacja"><img class="ico" alt="Edukacja" src="https://media.lordicon.com/icons/system/regular/23-calendar.svg"><span data-i18n="nav.education">Edukacja</span></a>
+    </nav>
+
+    <!-- Prawa grupa: WYJUSTOWANA DO PRAWEJ -->
     <div class="header-right">
       <a href="#kontakt" class="nav-contact"><img class="ico" alt="Kontakt" src="https://media.lordicon.com/icons/system/regular/41-share.svg"><span data-i18n="nav.contact">Kontakt</span></a>
 
-      <!-- Przełącznik języka: segmenty z FLAGAMI (SVG), zero napisów -->
+      <!-- Hamburger: tylko mobile/tablet -->
+      <button id="burger" class="burger" aria-label="Otwórz nawigację" aria-expanded="false">
+        <span class="sr-only">Otwarcie/zwinięcie menu</span>
+        <span class="hambox" aria-hidden="true">
+          <span class="line l1"></span>
+          <span class="line l2"></span>
+          <span class="line l3"></span>
+        </span>
+      </button>
+
+      <!-- Flag switch -->
       <div class="lang-switch" role="radiogroup" aria-label="Language" data-lang="pl">
         <span class="thumb" aria-hidden="true"></span>
         <button class="lang-flag" role="radio" aria-checked="true" data-lang="pl" aria-label="Polski">
-          <svg class="flag" viewBox="0 0 60 36" focusable="false" aria-hidden="true">
-            <rect width="60" height="36" fill="#ffffff"/>
-            <rect y="18" width="60" height="18" fill="#D4213D"/>
-          </svg>
+          <svg class="flag" viewBox="0 0 60 36" focusable="false" aria-hidden="true"><rect width="60" height="36" fill="#ffffff"/><rect y="18" width="60" height="18" fill="#D4213D"/></svg>
         </button>
         <button class="lang-flag" role="radio" aria-checked="false" data-lang="en" aria-label="English">
           <svg class="flag" viewBox="0 0 60 36" focusable="false" aria-hidden="true">
@@ -69,10 +79,9 @@
     </div>
   </header>
 
-  <!-- Canvas na konfetti pod paskiem głównym -->
   <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
-  <!-- DOTNAV po prawej -->
+  <!-- DOT NAV -->
   <nav class="dotnav" aria-label="Nawigacja sekcji">
     <a href="#start" class="dot" data-target="start" data-label="Start" aria-label="Start"></a>
     <a href="#o-mnie" class="dot" data-target="o-mnie" data-label="O mnie" aria-label="O mnie"></a>
@@ -85,7 +94,7 @@
   </nav>
 
   <main id="start">
-    <!-- HERO -->
+    <!-- HERO / START -->
     <section class="hero section snap" data-bg="sand" aria-label="Sekcja powitalna">
       <div class="hero-grid pane">
         <div class="hero-text">
@@ -215,7 +224,7 @@
       </div>
     </section>
 
-    <!-- KONTAKT + MAPA -->
+    <!-- KONTAKT -->
     <section id="kontakt" class="contact section snap" data-bg="spicy">
       <div class="pane">
         <div class="section-head with-ico">
@@ -248,7 +257,7 @@
       </div>
     </section>
 
-    <!-- STOPKA (oddzielna zakładka) -->
+    <!-- STOPKA -->
     <section id="stopka" class="footer-sec section snap" data-bg="wolf">
       <footer class="pane site-footer rich">
         <div class="footer-grid">
@@ -290,7 +299,6 @@
     </article>
   </dialog>
 
-  <!-- Scripts -->
   <script src="lang.js"></script>
   <script src="app.js"></script>
 </body>
