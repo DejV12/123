@@ -1,5 +1,5 @@
 /* =====================
-   APP.JS — v25
+   APP.JS — v28
    - Burger Creative‑Tim (klasa .is-open + aria, auto‑close)
    - Preloader, smooth anchors, anime hero
    - Dialogi (RODO)
@@ -328,4 +328,5 @@ function fireConfetti(){
   }
   requestAnimationFrame(step);
 }
+
 
